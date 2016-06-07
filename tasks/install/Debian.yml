@@ -1,0 +1,20 @@
+---
+
+- name: Docker APT repo key
+  apt_key:
+    state: present
+    url: "{{docker_repository_key}}"
+
+- name: Docker Repository (Debian)
+  apt_repository:
+    state: present
+    repo: "{{docker_repository}}"
+    update_cache: yes
+
+- name: Docker packages (Debian)
+  apt:
+    state: "{{ (docker_upgrade) | ternary('latest', 'present') }}"
+    name: "{{item}}"
+  with_items: docker_packages
+
+# vi:ts=2:sw=2:et:ft=yaml

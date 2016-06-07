@@ -1,0 +1,23 @@
+---
+
+# RedHat based distribution
+#  If AMZ Linux then just use centos as distribution
+docker_os_distribution: "{{(ansible_distribution == 'Amazon') | ternary('centos', ansible_distribution|lower)}}"
+
+# RedHat based distros version
+#  AMZ Linux reports it's verions as NA, so we use the currently matching centos
+#  verion for it. Otherwise, use the fact provided by the OS.
+docker_os_version: "{{(ansible_distribution_major_version == 'NA') | ternary('6', ansible_distribution_major_version)}}"
+
+docker_repository: |
+  [dockerrepo]
+  name=Docker Repository
+  baseurl=https://yum.dockerproject.org/repo/main/{{ docker_os_distribution }}/{{ docker_os_version }}
+  enabled=1
+  gpgcheck=1
+  gpgkey=https://yum.dockerproject.org/gpg
+
+docker_packages:
+  - "{{(ansible_distribution == 'Amazon') | ternary('docker', 'docker-engine')}}"
+
+# vi:ts=2:sw=2:et:ft=yaml

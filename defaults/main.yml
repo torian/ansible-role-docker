@@ -1,0 +1,15 @@
+---
+
+# Enable Docker Daemon
+#
+docker_enabled: true
+
+# Install docker PIP packages
+#
+docker_pip_packages:
+  - docker-compose
+  - docker-py
+
+docker_upgrade: false
+
+# vi:ts=2:sw=2:et:ft=yaml

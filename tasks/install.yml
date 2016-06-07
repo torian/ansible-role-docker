@@ -1,0 +1,15 @@
+---
+
+- include: install/Debian.yml
+  when: ansible_os_family == 'Debian'
+  
+- include: install/RedHat.yml
+  when: ansible_os_family == 'RedHat'
+ 
+- name: Docker Python Packages
+  pip:
+    name: "{{item}}"
+    state: present
+  with_items: "{{docker_pip_packages}}"
+  
+# vi:ts=2:sw=2:et:ft=yaml
