@@ -15,6 +15,6 @@
   apt:
     state: "{{ (docker_upgrade) | ternary('latest', 'present') }}"
     name: "{{item}}"
-  with_items: docker_packages
+  with_items: "{{docker_packages}}"
 
 # vi:ts=2:sw=2:et:ft=yaml
