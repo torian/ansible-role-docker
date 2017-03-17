@@ -1,5 +1,10 @@
 # Ansible Role for Docker Changelog
 
+## 2017-03-17: 0.2.1
+
+  - Ansible lint - Fixed trailing whitespaces
+  - Ansible lint - Fixed bare vars in `with_items` loop
+
 ## 2016-06-08: 0.2.0
 
   - Bugfix: use ansible_distribution_release and ansible_os_release
