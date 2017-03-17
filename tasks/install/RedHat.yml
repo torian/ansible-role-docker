@@ -13,6 +13,6 @@
     state: present
     name: "{{item}}"
     update_cache: yes
-  with_items: docker_packages
+  with_items: "{{docker_packages}}"
 
 # vi:ts=2:sw=2:et:ft=yaml
