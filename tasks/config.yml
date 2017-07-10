@@ -1,3 +1,5 @@
+---
+
 - name: Docker start at boot time
   service:
     name: docker
@@ -7,5 +9,6 @@
 
 - name: Create daemon file
   copy:
-    content: "{{docker_daemon_config|to_json}}"
+    content: "{{docker_daemon_config|to_nice_json}}"
     dest: "{{docker_config_path}}/daemon.json"
+  notify: docker restart

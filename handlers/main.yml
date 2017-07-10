@@ -1,0 +1,16 @@
+---
+
+- name: docker start
+  service:
+    name: docker
+    state: started
+
+- name: docker stop
+  service:
+    name: docker
+    state: stopped
+
+- name: docker restart
+  service:
+    name: docker
+    state: restarted
