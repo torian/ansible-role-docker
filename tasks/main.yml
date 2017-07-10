@@ -10,4 +10,11 @@
 - include: config.yml
   tags: docker_config
 
+- name: Docker start at boot time
+  service:
+    name: docker
+    state: started
+    enabled: yes
+  when: docker_enabled
+
 # vi:ts=2:sw=2:et:ft=yaml
