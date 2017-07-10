@@ -1,16 +1,8 @@
 ---
 
-- name: Defaults
-  hosts: all
-  become: yes
-
-  roles:
-    - ansible-role-docker
-
-
 - name: Docker Daemon config
-  hosts: all
-  become: yes
+  hosts: localhost
+  remote_user: root
 
   vars:
     - docker_daemon_config:
@@ -18,6 +10,5 @@
 
   roles:
     - ansible-role-docker
-
 
 # vi:ts=2:sw=2:et:ft=yaml
