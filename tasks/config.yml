@@ -1,5 +1,11 @@
 ---
 
+- name: Make sure that docker directory exists
+  file:
+    state: directory
+    path: "{{docker_config_path}}"
+    mode: 0700
+
 - name: Create daemon file
   copy:
     content: "{{docker_daemon_config|to_nice_json}}"
