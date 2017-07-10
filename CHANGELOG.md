@@ -1,5 +1,9 @@
 # Ansible Role for Docker Changelog
 
+## 2017-07-10: 0.3.0
+
+  - Docker configuration (json) through the variable `docker_daemon_config`
+
 ## 2017-03-17: 0.2.1
 
   - Ansible lint - Fixed trailing whitespaces
