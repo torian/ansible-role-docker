@@ -1,0 +1,11 @@
+- name: Docker start at boot time
+  service:
+    name: docker
+    state: started
+    enabled: yes
+  when: docker_enabled
+
+- name: Create daemon file
+  copy:
+    content: "{{docker_daemon_config|to_json}}"
+    dest: "{{docker_config_path}}/daemon.json"

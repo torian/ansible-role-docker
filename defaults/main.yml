@@ -12,4 +12,8 @@ docker_pip_packages:
 
 docker_upgrade: false
 
+docker_daemon_config: {}
+
+docker_config_path: /etc/docker
+
 # vi:ts=2:sw=2:et:ft=yaml
