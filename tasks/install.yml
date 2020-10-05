@@ -6,10 +6,26 @@
 - include: install/RedHat.yml
   when: ansible_os_family == 'RedHat'
 
+- name: Install Docker from repo
+  package:
+    name: "{{ docker_package }}"
+    state: present
+  when: docker_repository_enabled
+
 - name: Docker Python Packages
   pip:
-    name: "{{item}}"
+    name: "{{ docker_pip_packages }}"
     state: present
-  with_items: "{{docker_pip_packages}}"
+    executable: "{{ docker_pip_bin }}"
+  when: docker_pip_packages_install
+
+- name: Amazon Credential Helper
+  get_url:
+    url: "{{ docker_aws_credential_helper_pkg }}"
+    dest: "{{ docker_aws_credential_helper_bin_prefix }}/{{ docker_aws_credential_helper_bin }}"
+    mode: 0755
+    owner: root
+    group: root
+  when: docker_aws_credential_helper_install
 
 # vi:ts=2:sw=2:et:ft=yaml

@@ -1,14 +1,10 @@
+# vi:ts=2:sw=2:et:ft=yaml
 ---
 
 docker_os_distribution: "{{ansible_distribution | lower}}"
 docker_os_version: "{{ansible_distribution_major_version}}"
 docker_os_release: "{{ansible_distribution_release}}"
 
-docker_repository_key: "https://apt.dockerproject.org/gpg"
+docker_repository_apt: "deb {{docker_repository_url}} {{docker_os_release}} {{docker_repository_branch}}"
 
-docker_repository: "deb https://apt.dockerproject.org/repo {{docker_os_distribution}}-{{docker_os_release}} main"
-
-docker_packages:
-  - docker-engine
-
-# vi:ts=2:sw=2:et:ft=yaml
+docker_package: "docker-ce"

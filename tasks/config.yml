@@ -3,11 +3,21 @@
 - name: Make sure that docker directory exists
   file:
     state: directory
-    path: "{{docker_config_path}}"
-    mode: 0700
+    path: "{{ docker_config_path }}"
+    mode: 0755
 
-- name: Create daemon file
+- name: Daemon config file
   copy:
-    content: "{{docker_daemon_config|to_nice_json}}"
-    dest: "{{docker_config_path}}/daemon.json"
+    content: "{{ docker_daemon_config|to_nice_json }}"
+    dest: "{{ docker_config_path }}/daemon.json"
+    mode: 0640
+  notify: docker restart
+
+- name: Client config file
+  copy:
+    content: "{{ docker_client_config | to_nice_json }}"
+    dest: "{{ docker_config_path }}/config.json"
+    owner: "root"
+    group: "root"
+    mode: "0644"
   notify: docker restart

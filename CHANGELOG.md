@@ -1,5 +1,12 @@
 # Ansible Role for Docker Changelog
 
+## 2020-10-20: 0.4.0
+
+- Add docker credential helper for ECR
+- Add docker client config var (`docker_client_config`) to configure client
+  settings. Takes a YAML definition that is translated to json
+- Apply linting
+
 ## 2017-07-10: 0.3.0
 
   - Docker configuration (json) through the variable `docker_daemon_config`

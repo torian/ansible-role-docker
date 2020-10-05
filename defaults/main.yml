@@ -1,11 +1,24 @@
+# vi:ts=2:sw=2:et:ft=yaml
 ---
 
 # Enable Docker Daemon
 #
 docker_enabled: true
 
+# Install package from repository
+docker_repository_enabled: true
+
+docker_repository_url: "https://download.docker.com/linux/{{docker_os_distribution}}"
+docker_repository_key: "{{docker_repository_url}}/gpg"
+docker_repository_branch: stable
+
 # Install docker PIP packages
 #
+docker_pip_packages_install: false
+
+# Requires pip to be installed
+#
+docker_pip_bin: pip3
 docker_pip_packages:
   - docker-compose
   - docker-py
@@ -13,7 +26,13 @@ docker_pip_packages:
 docker_upgrade: false
 
 docker_daemon_config: {}
+docker_client_config: {}
 
 docker_config_path: /etc/docker
 
-# vi:ts=2:sw=2:et:ft=yaml
+docker_aws_credential_helper_install: true
+docker_aws_credential_helper_url: https://amazon-ecr-credential-helper-releases.s3.us-east-2.amazonaws.com
+docker_aws_credential_helper_version: 0.4.0
+docker_aws_credential_helper_pkg: "{{docker_aws_credential_helper_url}}/{{docker_aws_credential_helper_version}}/linux-amd64/docker-credential-ecr-login"
+docker_aws_credential_helper_bin: "docker-credential-ecr-login"
+docker_aws_credential_helper_bin_prefix: "/usr/bin"
