@@ -1,7 +1,7 @@
 # vi:ts=2:sw=2:et:ft=yaml
 ---
 language: python
-python: "2.7"
+python: "3.8"
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
@@ -15,10 +15,10 @@ install:
 script:
   # Test functionality with default values
   - ansible-playbook tests/test_defaults.yml -i localhost, --syntax-check
-  - ansible-playbook tests/test_defaults.yml -i localhost, --connection=local --sudo
+  - ansible-playbook tests/test_defaults.yml -i localhost, --connection=local -b
 
   - ansible-playbook tests/test_config.yml -i localhost, --syntax-check
-  - ansible-playbook tests/test_config.yml -i localhost, --connection=local --sudo
+  - ansible-playbook tests/test_config.yml -i localhost, --connection=local -b
 
   # Test upgrade
-  - ansible-playbook tests/test_defaults.yml -i localhost, --connection=local --sudo
+  - ansible-playbook tests/test_defaults.yml -i localhost, --connection=local -b
